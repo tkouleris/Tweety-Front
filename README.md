@@ -4,5 +4,5 @@
 </p>
 
 <p>
-Twitter clone front for [Tweety API][https://github.com/darkheart101/Tweety].
+Twitter clone front for [Tweety API](https://github.com/darkheart101/Tweety).
 </p>

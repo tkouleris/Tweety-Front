@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { AppConfig } from '../config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private appConfig: AppConfig) { }
 
   login()
   {
-    console.log('Login');
+    console.log(this.appConfig.api_url);
   }
 }

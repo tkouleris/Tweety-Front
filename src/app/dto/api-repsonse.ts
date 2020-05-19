@@ -1,5 +1,11 @@
 export class ApiResponse
 {
     message :string;
-    data : Array<any>;
+    data: loggedInUser;
+}
+
+class loggedInUser
+{
+    username:string;
+    jwt: string;
 }

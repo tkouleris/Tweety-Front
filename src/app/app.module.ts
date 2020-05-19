@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { JsonAppConfigService } from './config/json-app-config.service';
 import { AppConfig } from './config/app-config';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -28,6 +29,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxWebstorageModule.forRoot(),
   ],
   providers: [
     {

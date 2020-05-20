@@ -10,6 +10,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { JsonAppConfigService } from './config/json-app-config.service';
 import { AppConfig } from './config/app-config';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { RouterModule } from '@angular/router';
+import { TweetsComponent } from './tweets/tweets.component';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -22,7 +24,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TweetsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,12 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     ReactiveFormsModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
+    RouterModule.forRoot([
+      {path: 'login', component: LoginComponent},
+      {path: '', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'tweets', component: TweetsComponent},
+    ]),
   ],
   providers: [
     {

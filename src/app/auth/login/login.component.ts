@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { AppConfig } from 'src/app/config/app-config';
 import { LoginPayload } from 'src/app/dto/login-payload';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginPayload: LoginPayload;
 
-  constructor(private authService:AuthService)
+  constructor(private authService:AuthService, private router: Router)
   {
     this.loginForm = new FormGroup({
       username: new FormControl(),
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loginPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginPayload).subscribe( data=>{
       if(data)
-        console.log(data);
+        this.router.navigateByUrl('/tweets');
       else
         console.log('login failed');
     });

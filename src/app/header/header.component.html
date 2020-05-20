@@ -1,4 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#"><img src="assets/images/tweety.png"> Tweety</a>
-
+    <div class="col-md-3" *ngIf="authService.isAuthenticated()">
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
 </nav>

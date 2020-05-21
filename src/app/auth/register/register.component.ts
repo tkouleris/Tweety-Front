@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit, AfterViewInit {
   registrationForm: FormGroup;
   registrationPayload: RegistrationPayload;
-  // @ViewChild('registration_alert') registration_alert: { nativeElement: any; };
+  errorMessage :string = "";
+  @ViewChild('registration_alert') registration_alert: { nativeElement: any; };
 
   constructor(private formBuilder:FormBuilder, private authService : AuthService, private router:Router, private renderer: Renderer2)
   {
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   onSubmit()
   {
-    // this.renderer.setValue(this.registration_alert.nativeElement, 'error');
+
     this.registrationPayload.username = this.registrationForm.get('username').value;
     this.registrationPayload.email = this.registrationForm.get('email').value;
     this.registrationPayload.password = this.registrationForm.get('password').value;
@@ -48,7 +49,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this.authService.register(this.registrationPayload).subscribe(data => {
       this.router.navigateByUrl('');
     }, error => {
-      alert(error.error.message);
+      this.errorMessage = error.error.message;
+      this.renderer.removeClass(this.registration_alert.nativeElement,'d-none')
     });
   }
 

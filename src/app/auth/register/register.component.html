@@ -1,1 +1,33 @@
-<p>register works!</p>
+<div class="container">
+
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="alert alert-danger" id="registration_alert" role="alert">
+      This is a danger alert—check it out!
+    </div>
+    <label>
+      <p class="label-txt">ENTER YOUR NAME</p>
+      <input [formControlName]="'username'"  type="text" class="input">
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <label>
+        <p class="label-txt">ENTER YOUR EMAIL</p>
+        <input [formControlName]="'email'" type="text" class="input">
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </label>
+    <label>
+      <p class="label-txt">ENTER YOUR PASSWORD</p>
+      <input [formControlName]="'password'" type="password" class="input">
+      <div class="line-box">
+        <div class="line"></div>
+      </div>
+    </label>
+    <button type="submit">submit</button>
+
+  </form>
+</div>
+

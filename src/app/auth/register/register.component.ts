@@ -1,15 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { RegistrationPayload } from 'src/app/dto/registration-payload';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewInit {
+  registrationForm: FormGroup;
+  registrationPayload: RegistrationPayload;
+  // @ViewChild('registration_alert') registration_alert: { nativeElement: any; };
 
-  constructor() { }
+  constructor(private formBuilder:FormBuilder, private authService : AuthService, private router:Router, private renderer: Renderer2)
+  {
+
+    this.registrationForm = this.formBuilder.group({
+      username: '',
+      email: '',
+      password: '',
+    });
+
+    this.registrationPayload = {
+      username: '',
+      email: '',
+      password: '',
+    };
+
+  }
+  ngAfterViewInit(): void {
+    throw new Error("Method not implemented.");
+  }
 
   ngOnInit(): void {
   }
+
+  onSubmit()
+  {
+    // this.renderer.setValue(this.registration_alert.nativeElement, 'error');
+    this.registrationPayload.username = this.registrationForm.get('username').value;
+    this.registrationPayload.email = this.registrationForm.get('email').value;
+    this.registrationPayload.password = this.registrationForm.get('password').value;
+
+    this.authService.register(this.registrationPayload).subscribe(data => {
+      this.router.navigateByUrl('');
+    }, error => {
+      alert(error.error.message);
+    });
+  }
+
+
 
 }

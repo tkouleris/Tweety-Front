@@ -6,13 +6,15 @@ import { Observable } from 'rxjs';
 import {map, catchError} from 'rxjs/operators';
 import {LocalStorageService} from 'ngx-webstorage';
 import { ApiResponse } from '../dto/api-repsonse';
+import { RegistrationPayload } from '../dto/registration-payload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private login_url: string = "authenticate"
+  private login_url: string = "authenticate";
+  private register_url: string = "register";
 
   constructor(
     private appConfig: AppConfig,
@@ -29,6 +31,12 @@ export class AuthService {
         this.localStorageService.store('username', response.data.username);
         return true;
     }))
+  }
+
+  register( registrationPayload: RegistrationPayload): Observable<any>
+  {
+    let full_register_url : string = this.appConfig.api_url + this.register_url;
+    return this.httpClient.post(full_register_url,registrationPayload);
   }
 
   isAuthenticated():Boolean

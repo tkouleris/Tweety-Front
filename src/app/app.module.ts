@@ -6,12 +6,13 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JsonAppConfigService } from './config/json-app-config.service';
 import { AppConfig } from './config/app-config';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RouterModule } from '@angular/router';
 import { TweetsComponent } from './tweets/tweets.component';
+import { HttpClientInterceptor } from './http-api-interceptor';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -51,6 +52,11 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
       multi: true,
       deps: [JsonAppConfigService],
       useFactory: initializerFn
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpClientInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

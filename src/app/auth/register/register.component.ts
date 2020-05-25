@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit{
   registrationForm: FormGroup;
   registrationPayload: RegistrationPayload;
   errorMessage :string = "";
@@ -31,9 +31,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       password: '',
     };
 
-  }
-  ngAfterViewInit(): void {
-    throw new Error("Method not implemented.");
   }
 
   ngOnInit(): void {

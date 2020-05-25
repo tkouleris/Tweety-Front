@@ -3,7 +3,6 @@ import { TweetPayload } from '../dto/tweet-payload';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../config/app-config';
-import { CredentialsPayload } from '../dto/credentials-payload';
 
 @Injectable({
   providedIn: 'root'

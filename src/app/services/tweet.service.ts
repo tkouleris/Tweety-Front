@@ -26,7 +26,7 @@ export class TweetService {
   getFeed(): Observable<Array<TweetPayload>>
   {
     let full_feed_url :string = this.appConfig.api_url + this.feed_url;
-    console.log(this.tweet.tweet_id);
+
     return this.httpClient.get<any>(full_feed_url).pipe(
       map( response => {
           response.data.forEach(element => {

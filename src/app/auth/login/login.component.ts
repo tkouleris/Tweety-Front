@@ -36,9 +36,13 @@ export class LoginComponent implements OnInit {
     this.loginPayload.password = this.loginForm.get('password').value;
     this.authService.login(this.loginPayload).subscribe( data=>{
       if(data)
+      {
         this.router.navigateByUrl('/tweets');
-      else
-        console.log('login failed');
+      }
+      else{
+        this.authService.logout();
+      }
+
     });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TweetService } from '../services/tweet.service';
 import { Observable } from 'rxjs';
 import { TweetPayload } from '../dto/tweet-payload';
+import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 
 @Component({
   selector: 'app-tweets',
@@ -10,7 +11,7 @@ import { TweetPayload } from '../dto/tweet-payload';
 })
 export class TweetsComponent implements OnInit {
 
-  tweets :Observable<Array<TweetPayload>>;
+  tweets :TweetyFeedResponse;
   constructor(private tweetService: TweetService) { }
 
   ngOnInit(): void {
@@ -21,7 +22,12 @@ export class TweetsComponent implements OnInit {
     // );
 
 
-    this.tweets = this.tweetService.getFeed();
+    this.tweetService.getFeed().subscribe( (data:TweetyFeedResponse) =>{
+      console.log(data);
+
+    },(err:any)=>{
+      console.log("Failure");
+    });
 
   }
 

@@ -29,33 +29,33 @@ export class TweetService {
     this.tweets = [];
   }
 
-  getFeed(): Observable<Array<TweetPayload>>
+  getFeed(): Observable<TweetyFeedResponse>
   {
     let full_feed_url :string = this.appConfig.api_url + this.feed_url;
     // console.log(this.httpClient.get<Array<TweetPayload>>(full_feed_url));
-    // return this.httpClient.get<TweetyFeedResponse>(full_feed_url);
-    return this.httpClient.get<TweetyFeedResponse>(full_feed_url).pipe(
-      map( response => {
-          // response.data.forEach(element => {
-          //   this.tweet.tweet_id = element.tweet_id;
-          //   this.tweet.tweet_message = element.tweet_message;
-          //   var t = new TweetyUser();
-          //   t.username = element.tweet_user_id.username;
-          //   t.email = element.tweet_user_id.email;
-          //   t.user_id = element.tweet_user_id.user_id;
-          //   this.tweet.tweet_user_id = t;
+    return this.httpClient.get<TweetyFeedResponse>(full_feed_url);
+  //   return this.httpClient.get<TweetyFeedResponse>(full_feed_url).pipe(
+  //     map( response => {
+  //         // response.data.forEach(element => {
+  //         //   this.tweet.tweet_id = element.tweet_id;
+  //         //   this.tweet.tweet_message = element.tweet_message;
+  //         //   var t = new TweetyUser();
+  //         //   t.username = element.tweet_user_id.username;
+  //         //   t.email = element.tweet_user_id.email;
+  //         //   t.user_id = element.tweet_user_id.user_id;
+  //         //   this.tweet.tweet_user_id = t;
 
 
-          //   this.tweets.push(this.tweet);
-          //   console.log(this.tweets);
-          // });
+  //         //   this.tweets.push(this.tweet);
+  //         //   console.log(this.tweets);
+  //         // });
 
-          return this.tweets;
-      }),
-      catchError( error => {
-          return throwError(error); // From 'rxjs'
-      })
-   ); // end of pipe
+  //         return this.tweets;
+  //     }),
+  //     catchError( error => {
+  //         return throwError(error); // From 'rxjs'
+  //     })
+  //  ); // end of pipe
 
   }
 

@@ -13,6 +13,7 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RouterModule } from '@angular/router';
 import { TweetsComponent } from './tweets/tweets.component';
 import { HttpClientInterceptor } from './http-api-interceptor';
+import { TweetModalComponent } from './modals/tweet-modal/tweet-modal.component';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -26,7 +27,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    TweetsComponent
+    TweetsComponent,
+    TweetModalComponent
   ],
   imports: [
     BrowserModule,

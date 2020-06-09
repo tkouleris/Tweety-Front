@@ -12,23 +12,18 @@ import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 export class TweetsComponent implements OnInit {
 
   tweets :TweetyFeedResponse;
-  constructor(private tweetService: TweetService) { }
-
-  ngOnInit(): void {
-    // this.tweetService.getFeed().subscribe(
-    //   (err:any)=>{
-    //     console.log("Failure");
-    //   }
-    // );
-
-
-    this.tweetService.getFeed().subscribe( (data:TweetyFeedResponse) =>{
-      console.log(data);
-
-    },(err:any)=>{
-      console.log("Failure");
-    });
-
+  constructor(private tweetService: TweetService)
+  {
+    this.tweets = {
+      data: null
+    }
   }
 
+  ngOnInit(): void {
+    this.tweetService.getFeed().subscribe( (data:TweetyFeedResponse) =>{
+      this.tweets = data;
+    },(err:any)=>{
+      alert("Failure");
+    });
+  }
 }

@@ -3,7 +3,12 @@
         <h5 class="card-header" style="font-weight: bold;">{{ tweet.tweet_user_id.username }}</h5>
         <div class="card-body">
             <!-- <h5 class="card-title">Special title treatment</h5> -->
-            <p class="card-text">{{tweet.tweet_message}}</p>
+            <p class="card-text" style="font-size: 20px;">{{tweet.tweet_message}}</p>
+            <hr/>
+            <p class="card-text" style="font-size: 14px;">
+                <span style="font-weight: bold;">Created at: </span>{{tweet.tweet_created_at | date: 'EEEE, MMMM d, y, h:mm a'}}
+                | <span style="font-weight: bold;">Updated at: </span>{{tweet.tweet_updated_at | date: 'EEEE, MMMM d, y, h:mm a'}}
+            </p>
             <a href="#" class="btn btn-primary">Comment</a>
         </div>
     </div>

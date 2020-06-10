@@ -9,6 +9,11 @@ export class TweetModalContent {
   @Input() name;
 
   constructor(public activeModal: NgbActiveModal) {}
+
+  close(){
+    console.log('closing...');
+    this.activeModal.close();
+  }
 }
 
 @Component({
@@ -22,4 +27,6 @@ export class TweetModalComponent {
     const modalRef = this.modalService.open(TweetModalContent);
     modalRef.componentInstance.name = 'World';
   }
+
+
 }

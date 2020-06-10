@@ -4,7 +4,7 @@
     </div>
 
     <div class="col-md-3" *ngIf="authService.isAuthenticated()">
-        <button class="btn btn-primary" style="margin-right: 5px;">New Tweet</button>
+        <ngbd-modal-component></ngbd-modal-component>
         <button class="btn btn-danger" (click)="logout()">Logout</button>
     </div>
 </nav>

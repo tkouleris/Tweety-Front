@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { TweetModalComponent } from '../modals/tweet-modal/tweet-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('');
   }
+
 
 
 }

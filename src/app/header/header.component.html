@@ -3,8 +3,8 @@
         <a class="navbar-brand" href="#"><img src="assets/images/tweety.png"> Tweety</a>
     </div>
 
-    <div class="col-md-3" *ngIf="authService.isAuthenticated()">
-        <ngbd-modal-component></ngbd-modal-component>
+    <div class="col-md-4" *ngIf="authService.isAuthenticated()">
+        <tweet-modal></tweet-modal>
         <button class="btn btn-danger" (click)="logout()">Logout</button>
     </div>
 </nav>

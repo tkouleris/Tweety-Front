@@ -5,9 +5,15 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Hello, {{name}}!</p>
+
+    <form [formGroup]="addTweetForm" >
+      <div class="form-group">
+        <textarea class="form-control" [formControlName]="'tweet'" placeholder="type your tweet..."rows="4" cols="50">
+        </textarea>
+      </div>
+    </form>
+
   </div>
   <div class="modal-footer">
-    <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button> -->
     <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
   </div>

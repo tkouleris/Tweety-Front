@@ -26,4 +26,9 @@ export class TweetsComponent implements OnInit {
       alert("Failure");
     });
   }
+
+  show_comments(tweet_id)
+  {
+    console.log(tweet_id);
+  }
 }

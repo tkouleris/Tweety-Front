@@ -14,6 +14,7 @@ import { TweetsComponent } from './tweets/tweets.component';
 import { HttpClientInterceptor } from './http-api-interceptor';
 import { TweetModalComponent, TweetModalContent } from './modals/tweet-modal/tweet-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentsComponent } from './comments/comments.component';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -29,7 +30,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     RegisterComponent,
     TweetsComponent,
     TweetModalComponent,
-    TweetModalContent
+    TweetModalContent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
       {path: '', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'tweets', component: TweetsComponent},
+      {path: 'comments/tweet/:tweet_id', component: CommentsComponent},
     ]),
     NgbModule,
   ],

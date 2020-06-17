@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TweetPayload } from '../dto/tweet-payload';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../config/app-config';
-import { map, catchError } from 'rxjs/operators';
-import { TweetyUser } from '../dto/tweety-user';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 
 @Injectable({

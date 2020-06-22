@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppConfig } from '../config/app-config';
-import { HttpClient } from '@angular/common/http';
 import { CommentService } from '../services/comment.service';
+import { CommentsResponse } from '../dto/comments-response';
 
 @Component({
   selector: 'app-comments',
@@ -10,19 +9,18 @@ import { CommentService } from '../services/comment.service';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  private data:any;
+  comments:CommentsResponse;
 
   constructor(private route: ActivatedRoute, private commentService:CommentService) { }
 
   ngOnInit(): void
   {
     let tweet_id = this.route.snapshot.paramMap.get('tweet_id');
-    this.commentService.getTweetComments(tweet_id).subscribe( (data:any) =>{
-      this.data = data;
+    this.commentService.getTweetComments(tweet_id).subscribe( (data:CommentsResponse) =>{
+      this.comments = data;
     },(err:any)=>{
       alert("Failure");
     });
-  }
   }
 
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../config/app-config';
 import { Observable } from 'rxjs';
+import { CommentsResponse } from '../dto/comments-response';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,9 @@ export class CommentService {
 
   constructor( private httpClient: HttpClient, private appConfig: AppConfig) { }
 
-  getTweetComments(tweet_id): Observable<any>
+  getTweetComments(tweet_id): Observable<CommentsResponse>
   {
     let full_tweet_comments_url :string = this.appConfig.api_url + this.tweet_url + tweet_id + this.comment_url;
-    return this.httpClient.get<any>(full_tweet_comments_url);
-    // console.log(this.httpClient.get<any>(full_tweet_comments_url));
+    return this.httpClient.get<CommentsResponse>(full_tweet_comments_url);
   }
 }

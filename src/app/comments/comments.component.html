@@ -1,1 +1,13 @@
-<p>comments works!</p>
+<div class="container">
+    <div class="card" style="margin-top:15px;"  *ngFor="let comment of comments.data">
+        <h5 class="card-header" style="font-weight: bold;">{{ comment.comment_user_id.username }}</h5>
+        <div class="card-body">
+            <p class="card-text" style="font-size: 20px;">{{comment.comment_text}}</p>
+            <hr/>
+            <p class="card-text" style="font-size: 14px;">
+                <span style="font-weight: bold;">Created at: </span>{{comment.comment_created_at | date: 'EEEE, MMMM d, y, h:mm a'}}
+                | <span style="font-weight: bold;">Updated at: </span>{{comment.comment_updated_at | date: 'EEEE, MMMM d, y, h:mm a'}}
+            </p>
+        </div>
+    </div>
+</div>

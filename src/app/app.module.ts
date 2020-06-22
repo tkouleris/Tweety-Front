@@ -15,6 +15,7 @@ import { HttpClientInterceptor } from './http-api-interceptor';
 import { TweetModalComponent, TweetModalContent } from './modals/tweet-modal/tweet-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -43,12 +44,13 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
       {path: 'login', component: LoginComponent},
       {path: '', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'tweets', component: TweetsComponent},
-      {path: 'comments/tweet/:tweet_id', component: CommentsComponent},
+      {path: 'tweets', component: TweetsComponent, canActivate:[AuthGuard]},
+      {path: 'comments/tweet/:tweet_id', component: CommentsComponent, canActivate:[AuthGuard]},
     ]),
     NgbModule,
   ],
   providers: [
+    AuthGuard,
     {
       provide: AppConfig,
       deps: [HttpClient],

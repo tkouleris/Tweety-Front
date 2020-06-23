@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from '../services/comment.service';
 import { CommentsResponse } from '../dto/comments-response';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CommentPayload } from '../dto/comment-payload';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-comments',
@@ -16,8 +17,12 @@ export class CommentsComponent implements OnInit {
   comment = new FormControl('');
   commentPayload : CommentPayload;
 
-  constructor(private route: ActivatedRoute, private commentService:CommentService)
-  {
+  constructor(
+    private route: ActivatedRoute,
+    private commentService:CommentService,
+    private authService:AuthService,
+    private router:Router
+  ){
     this.CommenttForm = new FormGroup({
       comment: this.comment,
     });
@@ -36,7 +41,8 @@ export class CommentsComponent implements OnInit {
     this.commentService.getTweetComments(tweet_id).subscribe( (data:CommentsResponse) =>{
       this.comments = data;
     },(err:any)=>{
-      alert("Failure");
+      this.authService.logout();
+      this.router.navigate(["/"]);
     });
   }
 

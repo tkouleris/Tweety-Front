@@ -16,6 +16,7 @@ import { TweetModalComponent, TweetModalContent } from './modals/tweet-modal/twe
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentsComponent } from './comments/comments.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login-guard';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -42,7 +43,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     NgxWebstorageModule.forRoot(),
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
-      {path: '', component: LoginComponent},
+      {path: '', component: LoginComponent, canActivate:[LoginGuard]},
       {path: 'register', component: RegisterComponent},
       {path: 'tweets', component: TweetsComponent, canActivate:[AuthGuard]},
       {path: 'comments/tweet/:tweet_id', component: CommentsComponent, canActivate:[AuthGuard]},
@@ -51,6 +52,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   ],
   providers: [
     AuthGuard,
+    LoginGuard,
     {
       provide: AppConfig,
       deps: [HttpClient],

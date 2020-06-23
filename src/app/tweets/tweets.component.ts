@@ -3,6 +3,8 @@ import { TweetService } from '../services/tweet.service';
 import { Observable } from 'rxjs';
 import { TweetPayload } from '../dto/tweet-payload';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tweets',
@@ -12,7 +14,7 @@ import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 export class TweetsComponent implements OnInit {
 
   tweets :TweetyFeedResponse;
-  constructor(private tweetService: TweetService)
+  constructor(private tweetService: TweetService, private authService: AuthService, private router:Router)
   {
     this.tweets = {
       data: null
@@ -23,7 +25,8 @@ export class TweetsComponent implements OnInit {
     this.tweetService.getFeed().subscribe( (data:TweetyFeedResponse) =>{
       this.tweets = data;
     },(err:any)=>{
-      alert("Failure");
+      this.authService.logout();
+      this.router.navigate(["/"]);
     });
   }
 

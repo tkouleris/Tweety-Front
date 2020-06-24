@@ -43,6 +43,13 @@ export class LoginComponent implements OnInit {
         this.authService.logout();
       }
 
+    },(err:any)=>{
+      var error_message:string = "Unknown Error";
+      if(err.status == 400)
+      {
+        error_message = "Wrong username or password";
+      }
+      alert(error_message)
     });
   }
 

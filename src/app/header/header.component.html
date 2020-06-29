@@ -8,6 +8,7 @@
     </div>
 
     <div class="col-md-4" *ngIf="authService.isAuthenticated()">
+        <a class="btn btn-outline-primary" style="margin-bottom: 2px;" href="tweeters">Find tweeters</a>
         <tweet-modal></tweet-modal>
         <button class="btn btn-danger" (click)="logout()">Logout</button>
     </div>

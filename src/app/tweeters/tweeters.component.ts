@@ -27,4 +27,13 @@ export class TweetersComponent implements OnInit {
       this.router.navigate(["/"]);
     });
   }
+
+  subscribe(user_id:number)
+  {
+    this.userService.subscribeToUser(user_id).subscribe( data=>{
+      alert("subscribed")
+    }, error => {
+      alert(error);
+    });
+  }
 }

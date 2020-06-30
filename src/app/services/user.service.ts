@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   protected users_url:string = "user/list"
+  protected subscribe_url:string = "follow/user/"
 
   constructor(private appConfig: AppConfig, private httpClient: HttpClient)
   {
@@ -17,7 +18,13 @@ export class UserService {
 
   getUserList(): Observable<TweetersResponse>
   {
-    let full_feed_url :string = this.appConfig.api_url + this.users_url;
-    return this.httpClient.get<TweetersResponse>(full_feed_url);
+    let full_tweeters_list_url :string = this.appConfig.api_url + this.users_url;
+    return this.httpClient.get<TweetersResponse>(full_tweeters_list_url);
+  }
+
+  subscribeToUser(user_id:number)
+  {
+    let full_subscription_url :string = this.appConfig.api_url + this.subscribe_url + user_id;
+    return this.httpClient.post(full_subscription_url,null);
   }
 }

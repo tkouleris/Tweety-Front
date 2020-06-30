@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TweetService } from '../services/tweet.service';
-import { Observable } from 'rxjs';
-import { TweetPayload } from '../dto/tweet-payload';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';

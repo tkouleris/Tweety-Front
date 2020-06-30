@@ -1,14 +1,26 @@
 <div class="container">
-    <div class="card" style="margin-top:15px;">
+    <div class="card" style="margin-top:15px;" *ngFor="let tweeter of tweeters.data">
         <div class="card-body">
-            <!-- <h5 class="card-title">Special title treatment</h5> -->
-            <span class="card-text" style="font-size: 20px;font-weight: bold;">Username:</span>
-            <span class="card-text" style="font-size: 20px;">sample_username</span>
-            <span class="card-text" style="font-size: 20px;"> - </span>
-            <span class="card-text" style="font-size: 20px;font-weight: bold;">email:</span>
-            <span class="card-text" style="font-size: 20px;">test@email.com</span>
-            <a class="btn btn-primary" style="margin-left:10px;">check tweets</a>
-            <a class="btn btn-primary" style="margin-left:10px;">follow tweeter</a>
+            <div class="row">
+                <div class="col-sm">
+                    <span class="card-text" style="font-size: 20px;font-weight: bold;">Username:</span>
+                    <span class="card-text" style="font-size: 20px;">{{tweeter.username}}</span>
+                    <span class="card-text" style="font-size: 20px;"> - </span>
+                    <span class="card-text" style="font-size: 20px;font-weight: bold;">email:</span>
+                    <span class="card-text" style="font-size: 20px;">{{tweeter.email}}</span>
+                </div>
+
+                <div class="col-sm">
+                    <!-- TODO page with users tweets-->
+                    <a class="btn btn-primary"
+                    style="margin-left:10px;"
+                    [routerLink]="['tweety/tweet/user/',tweeter.user_id]"
+                    routerLinkActive="router-link-active"
+                    >check tweets</a>
+                    <!-- TODO follow user service -->
+                    <a class="btn btn-primary" style="margin-left:10px;">follow tweeter</a>
+                </div>
+            </div>
         </div>
 
     </div>

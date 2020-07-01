@@ -21,7 +21,9 @@ export class TweetersComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUserList().subscribe( (data:TweetersResponse) =>{
-      this.tweeters = data;
+      console.log(data.data);
+      this.tweeters.data = data.data;
+      console.log(this.tweeters);
     },(err:any)=>{
       this.authService.logout();
       this.router.navigate(["/"]);

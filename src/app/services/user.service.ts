@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   protected users_url:string = "user/list"
   protected subscribe_url:string = "follow/user/"
+  protected unsubscribe_url:string = "unfollow/user/"
 
   constructor(private appConfig: AppConfig, private httpClient: HttpClient)
   {
@@ -26,5 +27,11 @@ export class UserService {
   {
     let full_subscription_url :string = this.appConfig.api_url + this.subscribe_url + user_id;
     return this.httpClient.post(full_subscription_url,null);
+  }
+
+  unsubscribeToUser(user_id:number)
+  {
+    let full_subscription_url :string = this.appConfig.api_url + this.unsubscribe_url + user_id;
+    return this.httpClient.delete(full_subscription_url);
   }
 }

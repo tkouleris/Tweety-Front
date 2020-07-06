@@ -15,14 +15,12 @@
                     <!-- TODO page with users tweets-->
                     <a class="btn btn-primary"
                        style="margin-left:10px;"
-                       [routerLink]="['tweety/tweet/user/',tweeter.user_id]"
+                       [routerLink]="['/usertweets/',tweeter.user_id]"
                        routerLinkActive="router-link-active"
                     >Check Tweets</a>
 
                     <a  [ngClass]="{'d-none': tweeter.is_followed_by_user == false}" class="btn btn-outline-danger" style="margin-left:10px;" (click)="unsubscribe(tweeter.user_id)">-</a>
                     <a  [ngClass]="{'d-none': tweeter.is_followed_by_user == true}" class="btn btn-danger" style="margin-left:10px;" (click)="subscribe(tweeter.user_id)">+</a>
-                    <!-- <a *ngIf="tweeter.is_followed_by_user == true" class="btn btn-outline-danger" style="margin-left:10px;" (click)="unsubscribe(tweeter.user_id)">-</a>
-                    <a *ngIf="tweeter.is_followed_by_user == false" class="btn btn-danger" style="margin-left:10px;" (click)="subscribe(tweeter.user_id)">+</a> -->
                 </div>
             </div>
         </div>

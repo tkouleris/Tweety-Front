@@ -18,6 +18,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login-guard';
 import { TweetersComponent } from './tweeters/tweeters.component';
+import { UserTweetsComponent } from './user-tweets/user-tweets.component';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -35,7 +36,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     TweetModalComponent,
     TweetModalContent,
     CommentsComponent,
-    TweetersComponent
+    TweetersComponent,
+    UserTweetsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
       {path: 'tweets', component: TweetsComponent, canActivate:[AuthGuard]},
       {path: 'comments/tweet/:tweet_id', component: CommentsComponent, canActivate:[AuthGuard]},
       {path: 'tweeters', component: TweetersComponent, canActivate:[AuthGuard]},
+      {path: 'usertweets/:user_id', component: UserTweetsComponent, canActivate:[AuthGuard]},
     ]),
     NgbModule,
   ],

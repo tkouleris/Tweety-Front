@@ -28,7 +28,7 @@ export class TweetModalContent {
     }
   }
 
-  close(){
+  save(){
 
     this.tweetPayload.tweet_message = this.addTweetForm.get('tweet').value;
     this.tweetService.newTweet(this.tweetPayload).subscribe( data=>{

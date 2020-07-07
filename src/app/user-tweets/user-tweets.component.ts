@@ -12,28 +12,29 @@ import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 export class UserTweetsComponent implements OnInit {
 
   tweets :TweetyFeedResponse;
+  authService:AuthService;
 
   constructor(
-    private authService:AuthService,
+    authService:AuthService,
     private tweetService:TweetService,
     private route: ActivatedRoute,
     private router:Router
   )
   {
+    this.authService = authService;
     this.tweets = {
       data: null
     }
   }
 
   ngOnInit(): void {
-    let user_id = this.route.snapshot.paramMap.get('user_id');
-    this.tweetService.getUserTweets(user_id).subscribe( (data:TweetyFeedResponse) =>{
-      this.tweets = data;
-      console.log(this.tweets);
-    },(err:any)=>{
-      this.authService.logout();
-      this.router.navigate(["/"]);
+	  this.route.params.subscribe(routeParams => {
+      this.tweetService.getUserTweets(routeParams.user_id).subscribe( (data:TweetyFeedResponse) =>{
+            this.tweets = data;
+      },(err:any)=>{
+        this.authService.logout();
+        this.router.navigate(["/"]);
+      });
     });
   }
-
 }

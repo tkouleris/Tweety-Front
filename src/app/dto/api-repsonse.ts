@@ -8,4 +8,5 @@ class loggedInUser
 {
     username:string;
     jwt: string;
+    userid:number;
 }

@@ -29,6 +29,7 @@ export class AuthService {
       map(response=>{
         this.localStorageService.store('authenticationToken', response.data.jwt);
         this.localStorageService.store('username', response.data.username);
+        this.localStorageService.store('userid', response.data.userid);
         return true;
     }))
   }
@@ -44,9 +45,15 @@ export class AuthService {
     return this.localStorageService.retrieve('username') !=null;
   }
 
+  getLoggedInUserId()
+  {
+    return this.localStorageService.retrieve('userid');
+  }
+
   logout()
   {
     this.localStorageService.clear('authenticationToken');
     this.localStorageService.clear('username');
+    this.localStorageService.clear('userid');
   }
 }

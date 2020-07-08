@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AppConfig } from '../config/app-config';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
+import { SingleTweet } from '../dto/single-tweet';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class TweetService {
   private create_tweet_url: string = "tweet/create";
   private user_tweet_url: string = "tweet/user/"
   private delete_tweet_url: string = "tweet/"
+  private get_tweet_url: string = "tweet/"
 
   constructor(private appConfig: AppConfig, private httpClient: HttpClient)
   {
@@ -30,6 +32,12 @@ export class TweetService {
   {
     let full_new_tweet_url :string = this.appConfig.api_url + this.create_tweet_url;
     return this.httpClient.post(full_new_tweet_url, tweetPayload);
+  }
+
+  getTweet(tweetid:number)
+  {
+    let full_tweet_url :string = this.appConfig.api_url + this.get_tweet_url + tweetid;
+    return this.httpClient.get<SingleTweet>(full_tweet_url);
   }
 
   getUserTweets(user_id)

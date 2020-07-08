@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TweetService } from '../services/tweet.service';
 import { AuthService } from '../services/auth.service';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
+import { SingleTweet } from '../dto/single-tweet';
 
 @Component({
   selector: 'app-user-tweets',
@@ -35,6 +36,15 @@ export class UserTweetsComponent implements OnInit {
         this.authService.logout();
         this.router.navigate(["/"]);
       });
+    });
+  }
+
+  editTweet(tweetid:number)
+  {
+    this.tweetService.getTweet(tweetid).subscribe( (data:SingleTweet) =>{
+        console.log(data);
+    },(err:any)=>{
+
     });
   }
 

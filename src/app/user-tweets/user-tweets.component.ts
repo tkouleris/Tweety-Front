@@ -37,4 +37,13 @@ export class UserTweetsComponent implements OnInit {
       });
     });
   }
+
+  deleteTweet(tweetid:number)
+  {
+    this.tweetService.deleteTweet(tweetid).subscribe( (data:any) =>{
+      window.location.reload();
+    },(err:any)=>{
+      alert("Something went wrong")
+    });
+  }
 }

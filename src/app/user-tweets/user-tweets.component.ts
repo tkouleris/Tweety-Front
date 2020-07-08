@@ -4,6 +4,8 @@ import { TweetService } from '../services/tweet.service';
 import { AuthService } from '../services/auth.service';
 import { TweetyFeedResponse } from '../dto/tweety-feed-response';
 import { SingleTweet } from '../dto/single-tweet';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TweetModalContent } from '../modals/tweet-modal/tweet-modal.component';
 
 @Component({
   selector: 'app-user-tweets',
@@ -19,7 +21,8 @@ export class UserTweetsComponent implements OnInit {
     authService:AuthService,
     private tweetService:TweetService,
     private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private modalService:NgbModal
   )
   {
     this.authService = authService;
@@ -43,6 +46,9 @@ export class UserTweetsComponent implements OnInit {
   {
     this.tweetService.getTweet(tweetid).subscribe( (data:SingleTweet) =>{
         console.log(data);
+        const ref = this.modalService.open(TweetModalContent)
+        ref.componentInstance.tweet = data.data
+        //https://www.youtube.com/watch?v=XnSYkbRnVHE
     },(err:any)=>{
 
     });

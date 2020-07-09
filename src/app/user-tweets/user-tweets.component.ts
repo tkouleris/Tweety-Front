@@ -45,10 +45,8 @@ export class UserTweetsComponent implements OnInit {
   editTweet(tweetid:number)
   {
     this.tweetService.getTweet(tweetid).subscribe( (data:SingleTweet) =>{
-        console.log(data);
         const ref = this.modalService.open(TweetModalContent)
-        ref.componentInstance.tweet = data.data
-        //https://www.youtube.com/watch?v=XnSYkbRnVHE
+        ref.componentInstance.loadDataToEdit(data.data);
     },(err:any)=>{
 
     });

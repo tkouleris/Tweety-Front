@@ -28,8 +28,27 @@ export class TweetModalContent {
     }
   }
 
-  save(){
+  loadDataToEdit(data)
+  {
+    this.tweetPayload.tweet_id = data.tweet_id;
+    this.addTweetForm.controls.tweet.setValue(data.tweet_message);
+  }
 
+  update()
+  {
+    this.tweetPayload.tweet_message = this.addTweetForm.get('tweet').value;
+    this.tweetService.updateTweet(this.tweetPayload).subscribe( data=>{
+      window.location.reload();
+    },error =>{
+      alert(error);
+    });
+  }
+
+  save(){
+    if(this.tweetPayload.tweet_id != null){
+      this.update();
+      return;
+    }
     this.tweetPayload.tweet_message = this.addTweetForm.get('tweet').value;
     this.tweetService.newTweet(this.tweetPayload).subscribe( data=>{
       window.location.reload();

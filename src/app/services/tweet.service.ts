@@ -16,6 +16,7 @@ export class TweetService {
   private user_tweet_url: string = "tweet/user/"
   private delete_tweet_url: string = "tweet/"
   private get_tweet_url: string = "tweet/"
+  private update_tweet_url:string = "tweet/update/"
 
   constructor(private appConfig: AppConfig, private httpClient: HttpClient)
   {
@@ -32,6 +33,12 @@ export class TweetService {
   {
     let full_new_tweet_url :string = this.appConfig.api_url + this.create_tweet_url;
     return this.httpClient.post(full_new_tweet_url, tweetPayload);
+  }
+
+  updateTweet(tweetPayload:TweetPayload)
+  {
+    let full_update_tweet_url :string = this.appConfig.api_url + this.update_tweet_url + tweetPayload.tweet_id;
+    return this.httpClient.put(full_update_tweet_url, tweetPayload);
   }
 
   getTweet(tweetid:number)

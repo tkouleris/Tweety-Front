@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { TweetService } from 'src/app/services/tweet.service';
 import { TweetPayload } from 'src/app/dto/tweet-payload';
 import { Router } from '@angular/router';
+import { SingleTweet } from 'src/app/dto/single-tweet';
 
 @Component({
   selector: 'tweet-modal-content',
@@ -28,10 +29,14 @@ export class TweetModalContent {
     }
   }
 
-  loadDataToEdit(data)
+  loadData(tweetid:number)
   {
-    this.tweetPayload.tweet_id = data.tweet_id;
-    this.addTweetForm.controls.tweet.setValue(data.tweet_message);
+    this.tweetService.getTweet(tweetid).subscribe( (data:SingleTweet) =>{
+      this.tweetPayload.tweet_id = data.data.tweet_id;
+      this.addTweetForm.controls.tweet.setValue(data.data.tweet_message);
+    },(error:any)=>{
+      alert(error);
+    });
   }
 
   update()
@@ -45,7 +50,7 @@ export class TweetModalContent {
   }
 
   save(){
-    if(this.tweetPayload.tweet_id != null){
+    if(this.tweetPayload.tweet_id > 0){
       this.update();
       return;
     }

@@ -10,7 +10,7 @@
             </p>
             <div *ngIf="authService.getLoggedInUserId() == tweet.tweet_user_id.user_id">
                 <hr/>
-                <button class="btn btn-primary" (click)="editTweet(tweet.tweet_id)">Update</button>
+                <button style="margin-right:5px;" class="btn btn-primary" (click)="editTweet(tweet.tweet_id)">Update</button>
                 <button class="btn btn-danger" (click)="deleteTweet(tweet.tweet_id)">Delete</button>
             </div>
         </div>

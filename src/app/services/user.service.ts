@@ -12,10 +12,7 @@ export class UserService {
   protected subscribe_url:string = "follow/user/"
   protected unsubscribe_url:string = "unfollow/user/"
 
-  constructor(private appConfig: AppConfig, private httpClient: HttpClient)
-  {
-
-  }
+  constructor(private appConfig: AppConfig, private httpClient: HttpClient){}
 
   getUserList(): Observable<TweetersResponse>
   {

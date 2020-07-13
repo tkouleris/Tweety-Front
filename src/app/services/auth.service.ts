@@ -50,6 +50,11 @@ export class AuthService {
     return this.localStorageService.retrieve('userid');
   }
 
+  getLoggedInUserUsername()
+  {
+    return this.localStorageService.retrieve('username')
+  }
+
   logout()
   {
     this.localStorageService.clear('authenticationToken');

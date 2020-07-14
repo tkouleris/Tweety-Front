@@ -1,5 +1,9 @@
 
 <div class="wrapper fadeInDown" >
+  <div *ngIf="spinnerIsVisible()">
+    <app-spinner></app-spinner>
+  </div>
+
   <div id="formContent">
     <!-- Tabs Titles -->
 

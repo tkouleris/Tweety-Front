@@ -19,6 +19,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login-guard';
 import { TweetersComponent } from './tweeters/tweeters.component';
 import { UserTweetsComponent } from './user-tweets/user-tweets.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {
@@ -37,7 +38,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     TweetModalContent,
     CommentsComponent,
     TweetersComponent,
-    UserTweetsComponent
+    UserTweetsComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

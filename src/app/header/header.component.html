@@ -1,14 +1,14 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div class="col-md-3" *ngIf="!authService.isAuthenticated()">
+    <div class="col-md-6" *ngIf="!authService.isAuthenticated()">
         <a class="navbar-brand" href="#"><img src="assets/images/tweety.png"> Tweety</a>
     </div>
 
-    <div class="col-md-3" *ngIf="authService.isAuthenticated()">
+    <div class="col-6" *ngIf="authService.isAuthenticated()">
         <a class="navbar-brand" href="/tweets"><img src="assets/images/tweety.png"> Tweety</a>
-        <span style="color: #dce8f1;font-weight: bold;"> Hello {{ authService.getLoggedInUserUsername() }}</span>
+        <div><span style="color: #dce8f1;font-weight: bold;"> Hello {{ authService.getLoggedInUserUsername() }}</span></div>
     </div>
 
-    <div class="col-md-4" *ngIf="authService.isAuthenticated()">
+    <div class="col-md-6 col-lg-5" *ngIf="authService.isAuthenticated()">
         <tweet-modal></tweet-modal>
         <a class="btn btn-success" style="margin-bottom: 2px;margin-right:10px;"
            [routerLink]="['/usertweets/',authService.getLoggedInUserId()]"

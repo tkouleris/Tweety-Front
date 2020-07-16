@@ -1,0 +1,21 @@
+<div>
+    <div class="container">
+        <div style="margin-top:5px;">
+            <h3 style="color: #5fbae9;">Change Password</h3>
+        </div>
+        <hr>
+        <form [formGroup]="profileForm" (ngSubmit)="changePassword()">
+            <div class="form-group">
+                <label class="post-title">New Password</label>
+                <input type="password" class="form-control" [formControlName]="'new_password'" placeholder="new password">
+            </div>
+            <div class="form-group">
+                <label class="post-title">Confirm Password</label>
+                <input type="password" class="form-control" [formControlName]="'confirm_password'" placeholder="confirm password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

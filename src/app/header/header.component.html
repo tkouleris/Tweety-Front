@@ -5,7 +5,7 @@
 
     <div class="col-6" *ngIf="authService.isAuthenticated()">
         <a class="navbar-brand" href="/tweets"><img src="assets/images/tweety.png"> Tweety</a>
-        <div><span style="color: #dce8f1;font-weight: bold;"> Hello {{ authService.getLoggedInUserUsername() }}</span></div>
+        <div><span style="color: #dce8f1;font-weight: bold;"> Hello <a href="/settings">{{ authService.getLoggedInUserUsername() }}</a></span></div>
     </div>
 
     <div class="col-md-6 col-lg-5" *ngIf="authService.isAuthenticated()">

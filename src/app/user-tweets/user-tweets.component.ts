@@ -32,9 +32,14 @@ export class UserTweetsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-	  this.route.params.subscribe(routeParams => {
+    this.loadUserTweets()
+  }
+
+  loadUserTweets()
+  {
+    this.route.params.subscribe(routeParams => {
       this.tweetService.getUserTweets(routeParams.user_id).subscribe( (data:TweetyFeedResponse) =>{
-            this.tweets = data;
+        this.tweets = data;
       },(err:any)=>{
         this.authService.logout();
         this.router.navigate(["/"]);
@@ -51,7 +56,7 @@ export class UserTweetsComponent implements OnInit {
   deleteTweet(tweetid:number)
   {
     this.tweetService.deleteTweet(tweetid).subscribe( (data:any) =>{
-      window.location.reload();
+      this.loadUserTweets();
     },(err:any)=>{
       alert("Something went wrong")
     });

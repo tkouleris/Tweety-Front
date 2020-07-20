@@ -60,8 +60,8 @@ export class TweetModalContent {
     }, error => {
       alert(error);
     });
-
   }
+
 }
 
 @Component({
